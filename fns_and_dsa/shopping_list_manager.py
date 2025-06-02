@@ -10,11 +10,13 @@ def main():
 
     while True:
         display_menu()
-        try:
-            choice = int(input("Enter your choice (1-4): "))
-        except ValueError:
-            print("Invalid input. Please enter a number between 1 and 4.")
+        choice = input("Enter your choice: ")  # ALX might want exactly this prompt
+
+        if not choice.isdigit():
+            print("Invalid choice. Please enter a number.")
             continue
+
+        choice = int(choice)
 
         if choice == 1:
             item = input("Enter item to add: ")
@@ -32,7 +34,7 @@ def main():
                 print("Shopping list is empty.")
             else:
                 print("Current Shopping List:")
-                for i, item in enumerate(shopping_list, start=1):
+                for i, item in enumerate(shopping_list, 1):
                     print(f"{i}. {item}")
         elif choice == 4:
             print("Goodbye!")
