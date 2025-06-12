@@ -1,22 +1,45 @@
-# main.py
+# programming_paradigm/library_management.py
 
-from programming_paradigm.library_management import Book, Library
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+        self._is_checked_out = False
 
-def main():
-    library = Library()
-    library.add_book(Book("Brave New World", "Aldous Huxley"))
-    library.add_book(Book("1984", "George Orwell"))
+    def check_out(self):
+        if not self._is_checked_out:
+            self._is_checked_out = True
+            return True
+        return False
 
-    print("Available books after setup:")
-    library.list_available_books()
+    def return_book(self):
+        if self._is_checked_out:
+            self._is_checked_out = False
+            return True
+        return False
 
-    library.check_out_book("1984")
-    print("\nAvailable books after checking out '1984':")
-    library.list_available_books()
+class Library:
+    def __init__(self):
+        self._books = []
 
-    library.return_book("1984")
-    print("\nAvailable books after returning '1984':")
-    library.list_available_books()
+    def add_book(self, book):
+        self._books.append(book)
 
-if __name__ == "__main__":
-    main()
+    def check_out_book(self, title):
+        for book in self._books:
+            if book.title == title and not book._is_checked_out:
+                book.check_out()
+                return True
+        return False
+
+    def return_book(self, title):
+        for book in self._books:
+            if book.title == title and book._is_checked_out:
+                book.return_book()
+                return True
+        return False
+
+    def list_available_books(self):
+        for book in self._books:
+            if not book._is_checked_out:
+                print(f"{book.title} by {book.author}")
