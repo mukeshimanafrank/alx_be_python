@@ -24,15 +24,15 @@ class EBook(Book):
 
 
 class PrintBook(Book):
-    def __init__(self, title, author, year, weight_grams):
+    def __init__(self, title, author, year, page_count):
         super().__init__(title, author, year)
-        self.weight_grams = weight_grams
+        self.page_count = page_count
 
     def __str__(self):
-        return f"PrintBook: {super().__str__()} - Weight: {self.weight_grams}g"
+        return f"PrintBook: {super().__str__()} - Pages: {self.page_count}"
 
     def __repr__(self):
-        return f"PrintBook('{self.title}', '{self.author}', {self.year}, {self.weight_grams})"
+        return f"PrintBook('{self.title}', '{self.author}', {self.year}, {self.page_count})"
 
 
 class Library:
